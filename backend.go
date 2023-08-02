@@ -102,6 +102,8 @@ var (
 
 	ErrConsensusGetReceiptsCantBeBatched = errors.New("consensus_getReceipts cannot be batched")
 	ErrConsensusGetReceiptsInvalidTarget = errors.New("unsupported consensus_receipts_target")
+
+	ErrEstimateGasCantBeBatched = errors.New("eth_estimateGas cannot be batched")
 )
 
 func ErrInvalidRequest(msg string) *RPCErr {
@@ -251,6 +253,8 @@ type indexedReqRes struct {
 }
 
 const ConsensusGetReceiptsMethod = "consensus_getReceipts"
+
+const EstimateGasMethod = "eth_estimateGas"
 
 const ReceiptsTargetDebugGetRawReceipts = "debug_getRawReceipts"
 const ReceiptsTargetAlchemyGetTransactionReceipts = "alchemy_getTransactionReceipts"
@@ -430,6 +434,8 @@ func (b *Backend) doForward(ctx context.Context, rpcReqs []*RPCReq, isBatch bool
 		for _, rpcReq := range rpcReqs {
 			if rpcReq.Method == ConsensusGetReceiptsMethod {
 				return nil, ErrConsensusGetReceiptsCantBeBatched
+			} else if rpcReq.Method == EstimateGasMethod {
+				return nil, ErrEstimateGasCantBeBatched
 			}
 		}
 	} else {

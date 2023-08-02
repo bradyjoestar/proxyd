@@ -258,10 +258,11 @@ func (s *Server) HandleRPC(w http.ResponseWriter, r *http.Request) {
 	isUnlimitedOrigin := s.isUnlimitedOrigin(origin)
 	isUnlimitedUserAgent := s.isUnlimitedUserAgent(userAgent)
 
-	if xff == "" {
-		writeRPCError(ctx, w, nil, ErrInvalidRequest("request does not include a remote IP"))
-		return
-	}
+	// open for the cast
+	//if xff == "" {
+	//	writeRPCError(ctx, w, nil, ErrInvalidRequest("request does not include a remote IP"))
+	//	return
+	//}
 
 	isLimited := func(method string) bool {
 		isGloballyLimitedMethod := s.isGlobalLimit(method)

@@ -260,6 +260,10 @@ func Start(config *Config) (*Server, func(), error) {
 	// encounter an error creating their servers
 	errTimer := time.NewTimer(10 * time.Millisecond)
 
+	fmt.Println("----------config server rpcport------------")
+	fmt.Println(config.Server.RPCHost)
+	fmt.Println(config.Server.RPCPort)
+
 	if config.Server.RPCPort != 0 {
 		go func() {
 			if err := srv.RPCListenAndServe(config.Server.RPCHost, config.Server.RPCPort); err != nil {
