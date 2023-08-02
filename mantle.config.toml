@@ -1,3 +1,13 @@
+# List of WS methods to whitelist.
+ws_method_whitelist = [
+    "eth_subscribe",
+    "eth_chainId",
+    "eth_unsubscribe"
+]
+# Enable WS on this backend group. There can only be one WS-enabled backend group.
+ws_backend_group = "main"
+
+
 [backends]
 # A map of backends by name.
 [backends.local]
@@ -6,7 +16,7 @@
 rpc_url = "http://localhost:8545"
 # The WS URL to contact the backend at. Will be read from the environment
 # if an environment variable prefixed with $ is provided.
-ws_url = ""
+ws_url = "ws://localhost:8546"
 username = ""
 # An HTTP Basic password to authenticate with the backend. Will be read from
 # the environment if an environment variable prefixed with $ is provided.
@@ -55,6 +65,11 @@ eth_estimateGas = "main"
 rpc_host = "0.0.0.0"
 # Port for the above.
 rpc_port = 8080
+# Host for the proxyd WS server to listen on.
+ws_host = "0.0.0.0"
+# Port for the above
+# Set the ws_port to 0 to disable WS
+ws_port = 8085
 # Maximum client body size, in bytes, that the server will accept.
 max_body_size_bytes = 10485760
 max_concurrent_rpcs = 1000
