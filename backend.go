@@ -434,8 +434,6 @@ func (b *Backend) doForward(ctx context.Context, rpcReqs []*RPCReq, isBatch bool
 		for _, rpcReq := range rpcReqs {
 			if rpcReq.Method == ConsensusGetReceiptsMethod {
 				return nil, ErrConsensusGetReceiptsCantBeBatched
-			} else if rpcReq.Method == EstimateGasMethod {
-				return nil, ErrEstimateGasCantBeBatched
 			}
 		}
 	} else {
@@ -755,6 +753,7 @@ func (bg *BackendGroup) Forward(ctx context.Context, rpcReqs []*RPCReq, isBatch 
 				)
 				continue
 			}
+			fmt.Println(res[0].Result)
 		}
 
 		// re-apply overridden responses

@@ -3,4 +3,3 @@ bin
 config.toml
 
 .idea
-cmd/proxyd/proxyd
