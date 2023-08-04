@@ -35,6 +35,21 @@ client_key_file = ""
 # See https://github.com/ethereum-optimism/optimism/blob/186e46a47647a51a658e699e9ff047d39444c2de/op-node/sources/receipts.go#L186-L253
 consensus_receipts_target = "eth_getBlockReceipts"
 
+[server]
+# Host for the proxyd RPC server to listen on.
+rpc_host = "0.0.0.0"
+# Port for the above.
+rpc_port = 8080
+# Host for the proxyd WS server to listen on.
+ws_host = "0.0.0.0"
+# Port for the above
+# Set the ws_port to 0 to disable WS
+ws_port = 8085
+# Maximum client body size, in bytes, that the server will accept.
+max_body_size_bytes = 10485760
+max_concurrent_rpcs = 100000
+# Server log level
+log_level = "info"
 
 [backend_groups]
 [backend_groups.main]
@@ -88,7 +103,7 @@ eth_resend = "main" #Getting hash( alchemy not inculded)
 #Account Information
 #Returns information regarding an address's stored on-chain data.
 eth_getBalance = "main"
-eth_accounts = "main"
+#eth_accounts = "main"    [forbidden]
 eth_getProof = "main"
 eth_getCode = "main"
 eth_getStorageAt = "main"
@@ -111,6 +126,7 @@ net_version = "main"
 #Gas Estimation
 eth_estimateGas = "main"
 eth_gasPrice = "main"
+
 #Real-time Events
 #Introduces WebSocket-based requests/responses which leverage a network connection allowing developers to listen for changes continuously without the need for HTTP polling.
 eth_subscribe = "main"
@@ -122,24 +138,4 @@ eth_getTxStatusDetailByHash = "main"
 # rollup api
 rollup_getInfo = "main"   #( alchemy not inculded)
 rollup_gasPrices = "main" #( alchemy not inculded)
-
-
-
-
-[server]
-# Host for the proxyd RPC server to listen on.
-rpc_host = "0.0.0.0"
-# Port for the above.
-rpc_port = 8080
-# Host for the proxyd WS server to listen on.
-ws_host = "0.0.0.0"
-# Port for the above
-# Set the ws_port to 0 to disable WS
-ws_port = 8085
-# Maximum client body size, in bytes, that the server will accept.
-max_body_size_bytes = 10485760
-max_concurrent_rpcs = 100000
-# Server log level
-log_level = "info"
-
 
